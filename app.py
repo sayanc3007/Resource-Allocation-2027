@@ -55,7 +55,12 @@ def update_map(selected_cols):
        
     # Dynamically sum the selected columns for each country row
     df['Dynamic_Total'] = df[selected_cols].sum(axis=1)
-   
+
+
+    # Calculate max value. If everything is 0, set upper bound to 1 so '0' stays white.
+    max_val = df['Dynamic_Total'].max()
+    upper_bound = max_val if max_val > 0 else 1
+    
     # Changed the first color to #ffffff (pure white) for zero-values
     brown_shades = ['#ffffff', '#e3d2bf', '#bf9f7d', '#966e4a', '#6e4523', '#401e05']
 
